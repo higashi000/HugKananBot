@@ -1,5 +1,5 @@
 require 'twitter'
-require './API'
+require '~/API'
 
 @client = Twitter::REST::Client.new do |config|
   config.consumer_key        = CONSUMER_KEY
@@ -12,14 +12,15 @@ end
 $finalReplyID
 $canFirst = true
 def timeLine
+  overlapReply = false
   kananSerif = ["ハグしよ！", "ダイブいい感じ！", "ご機嫌いかがかなん？", "8!", "訴えるよ", "何か心配事なら, 相談に乗るよ", "一緒に潜ってみる？", "ん？私ならここにいるよ", "あっはは。結構甘えん坊なんだね？　千歌に似てるかも♪", "焦らずいこう♪"]
   @client.home_timeline.each do |tweet|
     nowTime = Time.now
 
-    if tweet.text == "@Kanan136_bot ハグしよ！" then
-      if $finalReplyID == tweet.id then
-        return
-      end
+    if $finalReplyID == tweet.id then
+      overlapReply = true
+    end
+    if tweet.text == "@Kanan136_bot ハグしよ！" && !overlapReply then
       if $canFirst then
         $finalReplyID = tweet.id
         $canFirst = false
@@ -31,6 +32,8 @@ def timeLine
 end
 
 tweetFlg = true
+
+timeLine
 
 
 loop do
