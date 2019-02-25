@@ -14,7 +14,7 @@ def timeLine
                 "あっはは。結構甘えん坊なんだね？　千歌に似てるかも♪", "焦らずいこう♪"]
 
   @client.home_timeline.each do |tweet|
-    time = TIme.new
+    time = Time.new
     nowTime = time.year.to_s
     tweetTime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
 
@@ -51,7 +51,7 @@ def timeLine
 end
 
 def getTweetTime(id)
-  return TIme.at(((id.to_i >> 22) + 1288834974657) / 1000.0)
+  return Time.at(((id.to_i >> 22) + 1288834974657) / 1000.0)
 end
 
 def countDigit(num)
