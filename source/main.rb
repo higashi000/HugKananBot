@@ -46,7 +46,7 @@ def timeLine
 
     nowTime = nowTime.to_i
 
-    if tweettime < (nowTime - 2) then
+    if tweettime =< (nowTime - 2) then
       break
     end
 
@@ -54,11 +54,9 @@ def timeLine
     p tweettime
     p nowTime
 
-    if tweet.text == "@Kanan136_bot ぽよ" && tweettime >= (nowTime - 2) then
+    if tweet.text == "@Kanan136_bot ぽよ" && tweettime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
-    end
-
-    if tweet.text == "@Kanan136_bot ぽよよ" && tweettime >= (nowTime - 2) then
+    elsif tweet.text == "@Kanan136_bot ぽよよ" && tweettime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     end
   end
