@@ -7,13 +7,14 @@ require 'twitter'
   config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
 
-
 def timeLine
   kananSerif = ["ハグしよ！", "ダイブいい感じ！", "ご機嫌いかがかなん？", "8!", "訴えるよ",
                 "何か心配事なら, 相談に乗るよ", "一緒に潜ってみる？", "ん？私ならここにいるよ",
                 "あっはは。結構甘えん坊なんだね？　千歌に似てるかも♪", "焦らずいこう♪"]
 
-  @client.home_timeline.each do |tweet|
+  searchString = "to:Kanan136_bot"
+
+  @client.search(searchString, :count => 100).map do |tweet|
     time = Time.new
     nowTime = time.year.to_s
     tweetTime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
@@ -43,6 +44,10 @@ def timeLine
     end
 
     nowTime = nowTime.to_i
+
+    if tweetTime <= (nowTime - 2) then
+      break
+    end
 
     if tweet.text == "@Kanan136_bot ハグしよ！" && tweetTime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
