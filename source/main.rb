@@ -15,7 +15,7 @@ def timeLine
 
   searchString = "to:Kanan136_bot"
 
-  @client.search(searchString, :count => 100, :result_type => "recent").map do |tweet|
+  @client.search(searchString, :count => 100).map do |tweet|
     time = Time.new
     nowTime = time.year.to_s
     tweettime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
