@@ -46,7 +46,7 @@ def timeLine
 
     nowTime = nowTime.to_i
 
-    if tweettime =< (nowTime - 2) then
+    if tweettime <= (nowTime - 2) then
       break
     end
 
