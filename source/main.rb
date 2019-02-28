@@ -1,11 +1,10 @@
 require 'twitter'
-require '~/API'
 
 @client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = CONSUMER_KEY
-  config.consumer_secret     = CONSUMER_SECRET
-  config.access_token        = ACCESS_TOKEN
-  config.access_token_secret = ACCESS_TOKEN_SECRET
+  config.consumer_key        = ENV['CONSUMER_KEY']
+  config.consumer_secret     = ENV['CONSUMER_SECRET']
+  config.access_token        = ENV['ACCESS_TOKEN']
+  config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
 
 def timeLine
@@ -52,16 +51,7 @@ def timeLine
       break
     end
 
-    p tweet.user.screen_name
-    p tweet.text
-    p tweettime
-    p nowTime
-
-    if tweet.text == "@Kanan136_bot ぽよ" && tweettime > (nowTime - 2) then
-      @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
-    elsif tweet.text == "@Kanan136_bot ぽよよ" && tweettime > (nowTime - 2) then
-      @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
-    elsif tweet.text == "@Kanan136_bot ハグしよ！" && tweettime > (nowTime - 2) then
+    if tweet.text == "@Kanan136_bot ハグしよ！" && tweetTime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     end
   end
