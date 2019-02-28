@@ -15,41 +15,44 @@ def timeLine
 
   searchString = "to:Kanan136_bot"
 
+  time = Time.new
+  nowTime = time.year.to_s
+
+  if countDigit(time.mon) == 1 then
+    nowTime += "0" + time.mon.to_s
+  else
+    nowTime += time.mon.to_s
+  end
+
+  if countDigit(time.day) == 1 then
+    nowTime += "0" + time.day.to_s
+  else
+    nowTime += time.day.to_s
+  end
+
+  if countDigit(time.hour) == 1 then
+    nowTime += "0" + time.hour.to_s
+  else
+    nowTime += time.hour.to_s
+  end
+
+  if countDigit(time.min) == 1 then
+    nowTime += "0" + time.min.to_s
+  else
+    nowTime += time.min.to_s
+  end
+
+  nowTime = nowTime.to_i
+
   @client.search(searchString, :count => 100).map do |tweet|
-    time = Time.new
-    nowTime = time.year.to_s
+
     tweettime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
-
-    if countDigit(time.mon) == 1 then
-      nowTime += "0" + time.mon.to_s
-    else
-      nowTime += time.mon.to_s
-    end
-
-    if countDigit(time.day) == 1 then
-      nowTime += "0" + time.day.to_s
-    else
-      nowTime += time.day.to_s
-    end
-
-    if countDigit(time.hour) == 1 then
-      nowTime += "0" + time.hour.to_s
-    else
-      nowTime += time.hour.to_s
-    end
-
-    if countDigit(time.min) == 1 then
-      nowTime += "0" + time.min.to_s
-    else
-      nowTime += time.min.to_s
-    end
-
-    nowTime = nowTime.to_i
 
     if tweettime <= (nowTime - 2) then
       break
     end
 
+    p tweet.user.screen_name
     p tweet.text
     p tweettime
     p nowTime
@@ -57,6 +60,8 @@ def timeLine
     if tweet.text == "@Kanan136_bot ぽよ" && tweettime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     elsif tweet.text == "@Kanan136_bot ぽよよ" && tweettime > (nowTime - 2) then
+      @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
+    elsif tweet.text == "@Kanan136_bot ハグしよ！" && tweettime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     end
   end
