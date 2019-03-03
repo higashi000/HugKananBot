@@ -45,9 +45,9 @@ def timeLine
 
   @client.search(searchString, :count => 100).map do |tweet|
 
-    tweettime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
+    tweetTime = getTweetTime(tweet.id).strftime("%Y%m%d%H%M").to_i
 
-    if tweettime <= (nowTime - 2) then
+    if tweetTime <= (nowTime - 2) then
       break
     end
 
