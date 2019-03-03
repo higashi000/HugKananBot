@@ -80,6 +80,10 @@ tweetFlg = true
 loop do
   time = Time.new
 
+  if time.hour == 0 && time.min == 0 && time.sec == 0 then
+    @client.update("[定期] ツイフィールも読んでほしいな♪\n http://twpf.jp/Kanan136_bot")
+  end
+
   if time.sec == 0 && tweetFlg then
     timeLine
 
