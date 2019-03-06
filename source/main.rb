@@ -13,7 +13,7 @@ def timeLine
                 "何か心配事なら, 相談に乗るよ", "一緒に潜ってみる？", "ん？私ならここにいるよ",
                 "あっはは。結構甘えん坊なんだね？　千歌に似てるかも♪", "焦らずいこう♪"]
 
-  searchString = "to:Kanan136_bot"
+  searchString = "to:KananHug_bot"
 
   time = Time.new
   nowTime = time.year.to_s
