@@ -1,5 +1,5 @@
 require 'twitter'
-#require './getHug'
+require './getHug'
 
 @client = Twitter::REST::Client.new do |config|
   config.consumer_key        = ENV['CONSUMER_KEY']
@@ -56,14 +56,6 @@ def timeLine
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     end
   end
-end
-
-def getHug(tweetText)
-  if (tweetText["ハグ"])
-    return true
-  end
-
-  return false
 end
 
 def getTweetTime(id)
