@@ -1,1 +1,1 @@
-bot: ruby source/main.rb source/getHug.rb
+bot: ruby source/main.rb
