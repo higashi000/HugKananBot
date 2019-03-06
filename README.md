@@ -1,3 +1,3 @@
 # ハグしたい果南bot
 
-[@Kanan136_bot](https://twitter.com/Kanan136_bot?lang=ja)
+[@KananHug_bot](https://twitter.com/KananHug_bot?lang=ja)
