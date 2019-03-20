@@ -82,6 +82,9 @@ loop do
     @client.update("[定期] ツイフィールも読んでほしいな♪\n http://twpf.jp/Kanan136_bot")
   end
 
+  if time.hour == 19 && time.min == 0 && time.sec == 0 then
+    @client.update("[定期] スクフェスとShadowverseのコラボもよろしくね！\n https://lovelive-sif.bushimo.jp/6thproject/shadowverse/")
+
   if time.sec == 0 && tweetFlg then
     timeLine
 
