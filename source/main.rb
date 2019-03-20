@@ -84,6 +84,7 @@ loop do
 
   if time.hour == 19 && time.min == 0 && time.sec == 0 then
     @client.update("[定期] スクフェスとShadowverseのコラボもよろしくね！\n https://lovelive-sif.bushimo.jp/6thproject/shadowverse/")
+  end
 
   if time.sec == 0 && tweetFlg then
     timeLine
