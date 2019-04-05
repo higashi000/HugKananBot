@@ -83,7 +83,7 @@ loop do
   end
 
   if time.hour == 19 && time.min == 0 && time.sec == 0 then
-    @client.update("[定期] スクフェスとShadowverseのコラボもよろしくね！\n https://lovelive-sif.bushimo.jp/6thproject/shadowverse/")
+    @client.update("[定期] 6周年記念企画 なかよし総選挙もよろしくね！\n https://lovelive-sif.bushimo.jp/6thproject/nakayoshi/")
   end
 
   if time.sec == 0 && tweetFlg then
