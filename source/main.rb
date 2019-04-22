@@ -1,4 +1,5 @@
 require 'twitter'
+require './slot'
 
 @client = Twitter::REST::Client.new do |config|
   config.consumer_key        = ENV['CONSUMER_KEY']
@@ -7,7 +8,7 @@ require 'twitter'
   config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
 
-def timeLine
+def searchReply
   kananSerif = ["ハグしよ！", "ダイブいい感じ！", "ご機嫌いかがかなん？", "8!", "訴えるよ",
                 "何か心配事なら, 相談に乗るよ", "一緒に潜ってみる？", "ん？私ならここにいるよ",
                 "あっはは。結構甘えん坊なんだね？　千歌に似てるかも♪", "焦らずいこう♪"]
@@ -54,11 +55,54 @@ def timeLine
     if getHug((tweet.text).to_s) && tweetTime > (nowTime - 2) then
       @client.update("@#{tweet.user.screen_name} #{kananSerif[rand(0 .. 9)]}", options = {:in_reply_to_status_id => tweet.id})
     end
+
+    if getSlot((tweet.text).to_s) && tweetTime > (nowTime - 2) then
+
+      cntDuplicate = 0
+
+      getMusic = []
+
+      getMusic[0] = musicSlot
+      getMusic[1] = musicSlot
+      getMusic[2] = musicSlot
+
+      for i in getMusic do
+        cnt = 0
+        for j in getMusic do
+          if i == j then
+            cnt += 1
+          end
+        end
+        if cnt > cntDuplicate then
+          cntDuplicate = cnt
+        end
+      end
+
+
+      if cntDuplicate == 3 then
+        @client.update("@#{tweet.user.screen_name} ｼｭｨｨｨｨｨﾝ Music Slot!!\n「#{getMusic[0]}」\n「#{getMusic[1]}」\n「#{getMusic[2]}」\nやったねFULLCOMBO!!",
+                       options = {:in_reply_to_status_id => tweet.id})
+      elsif cntDuplicate == 2 then
+        @client.update("@#{tweet.user.screen_name} ｼｭｨｨｨｨｨﾝ Music Slot!!\n「#{getMusic[0]}」\n「#{getMusic[1]}」\n「#{getMusic[2]}」\nもぉ〜！あとちょっとだったのに！！",
+                       options = {:in_reply_to_status_id => tweet.id})
+      elsif cntDuplicate == 1 then
+        @client.update("@#{tweet.user.screen_name} ｼｭｨｨｨｨｨﾝ Music Slot!!\n「#{getMusic[0]}」\n「#{getMusic[1]}」\n「#{getMusic[2]}」\n成功とは...言い難いね...",
+                       options = {:in_reply_to_status_id => tweet.id})
+      end
+    end
   end
 end
 
 def getHug(tweetText)
   if (tweetText["ハグ"])
+    return true
+  end
+
+  return false
+end
+
+def getSlot(tweetText)
+  if (tweetText["スロット"])
     return true
   end
 
@@ -83,7 +127,7 @@ loop do
   end
 
   if time.sec == 0 && tweetFlg then
-    timeLine
+    searchReply
 
     tweetFlg = false
   end
