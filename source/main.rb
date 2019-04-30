@@ -158,8 +158,7 @@ def musicSlot
   ]
 
 
-  p music.length
-  return misic[rand(0 .. music.length)]
+  return music[rand(0 .. (music.length - 1))]
 end
 
 def getTweetTime(id)
