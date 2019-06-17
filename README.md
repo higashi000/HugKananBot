@@ -1,3 +1,3 @@
 # ハグしたい果南bot
-
-[@KananHug_bot](https://twitter.com/KananHug_bot?lang=ja)
+## introduction
+Twitterで動いている[@KananHug_bot](https://twitter.com/KananHug_bot?lang=ja)のリポジトリ
